@@ -1,9 +1,9 @@
 <div id="<%= dom_id gym %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">DASHBOARD OF:</strong>
     <%= gym.name %>
   </p>
-
+  Gym since: <%= gym.created_at.strftime("%D") %>
   <% if action_name != "show" %>
     <%= link_to "Show this gym", gym, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this gym', edit_gym_path(gym), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

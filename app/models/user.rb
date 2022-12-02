@@ -1,16 +1,12 @@
 class User < ApplicationRecord
-  belongs_to :gym
+  has_and_belongs_to_many :gyms, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  def has_gym_assigned?
-    if(self.gym == nil)
-      return false
-    else
-      return true
-    end
-  end
-  
+  validates_uniqueness_of :email, on: :create, message: "user with this email already exists"
+
+  enum :role, { tenant: 0, employee: 10, superadmin: 50 }
+
 end
